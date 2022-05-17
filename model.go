@@ -86,6 +86,12 @@ type Payment struct {
 	}
 }
 
+type RefundReceiveAccount struct {
+	Bank          string `json:"bank"`          // Bank code
+	AccountNumber string `json:"accountNumber"` // Account number
+	HolderName    string `json:"holderName"`    // Account holder name
+}
+
 type Error struct {
 	Code    string `json:"code"`
 	Message string `json:"message"`
