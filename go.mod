@@ -1,4 +1,4 @@
-module TossPaymentsApi
+module github.com/DeltaLaboratory/TossPaymentsApi
 
 go 1.18
 

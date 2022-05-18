@@ -85,6 +85,19 @@ func (c *Client) CancelPayment(paymentKey string, option *CancelPaymentOption) (
 	return payment, nil
 }
 
-func (c *Client) KeyinPaymentRequest(amount int64, orderId string, cardNumber string, cardExpirationMonth string, customerIdentityNumber string, orderName *string, cardPassword *string, cardInstallmentPlan *int, taxFreeAmount *int64, customer) {
-
+func (c *Client) KeyinPaymentRequest(option *KeyinPaymentOption) (*Payment, error) {
+	payment := &Payment{}
+	errorMessage := &Error{}
+	resp, err := c.httpClient.R().
+		SetBody(*option).
+		SetResult(payment).
+		SetError(errorMessage).
+		Post("/v1/payments/key-in")
+	if err != nil {
+		return nil, err
+	}
+	if resp.IsSuccess() != true {
+		return nil, errors.New(errorMessage.Code + ":" + errorMessage.Message)
+	}
+	return payment, nil
 }
