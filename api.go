@@ -10,7 +10,7 @@ func NewClient(apiKey string) *Client {
 	client := &Client{}
 	client.httpClient = req.C().
 		SetBaseURL("https://api.tosspayments.com").
-		SetCommonHeader("Authorization", "Basic "+base64.URLEncoding.EncodeToString([]byte(apiKey+":"))).
+		SetCommonHeader("Authorization", "Basic "+base64.StdEncoding.EncodeToString([]byte(apiKey+":"))).
 		SetCommonHeader("Content-Type", "application/json")
 	return client
 }
