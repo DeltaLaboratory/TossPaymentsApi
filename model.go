@@ -3,13 +3,14 @@ package TossPaymentsApi
 // Payment
 // Object containing payment information
 // Definition : https://docs.tosspayments.com/reference#payment-%EA%B0%9D%EC%B2%B4
+// Version : 2022-06-08
 type Payment struct {
 	Version        string `json:"version"`        // Version of the payment object
 	PaymentKey     string `json:"paymentKey"`     // Unique key of transaction
 	OrderId        string `json:"orderId"`        // Unique ID issued by the merchant of order
 	OrderName      string `json:"orderName"`      // Name of the order
-	Type           string `json:"type"`           // Payment type information [ Possible Values : "NORMAL", "BILLING", "CONNECTPAY" ]
-	Method         string `json:"method"`         // Payment method [ Possible Values : "카드", "가상계좌", "휴대폰", "계좌이체", "상품권(문화상품권, 도서문화상품권, 게임문화상품권)" ]
+	Type           string `json:"type"`           // Payment type information [ Possible Values : https://docs.tosspayments.com/reference/enum-codes#%EA%B2%B0%EC%A0%9C-%EC%88%98%EB%8B%A8 ]
+	Method         string `json:"method"`         // Payment method [ Possible Values : https://docs.tosspayments.com/reference/enum-codes#%EA%B2%B0%EC%A0%9C-%EC%88%98%EB%8B%A8 ]
 	MemberId       string `json:"mid"`            // Merchant ID
 	Currency       string `json:"currency"`       // Currency of the payment, MUST be "KRW"
 	TotalAmount    int64  `json:"totalAmount"`    // Total payment amount
@@ -42,8 +43,8 @@ type Payment struct {
 		InterestPayer         string `json:"interestPayer"`         // Interest fee payer if interest free is available, [ Possible Values : "CUSTOMER", "MERCHANT", "CARD_COMPANY" ]
 		ApproveNo             string `json:"approveNo"`             // Approval number of card company
 		UseCardPoint          bool   `json:"useCardPoint"`          // Whether to use card point
-		CardType              string `json:"cardType"`              // Card type, [ Possible Values : "신용","체크","기프트" ]
-		OwnerType             string `json:"ownerType"`             // Card owner type, [ Possible Values : "개인","법인" ]
+		CardType              string `json:"cardType"`              // Card type, [ Possible Values : "신용", "체크", "기프트" ]
+		OwnerType             string `json:"ownerType"`             // Card owner type, [ Possible Values : "개인", "법인" ]
 		AcquireStatus         string `json:"acquireStatus"`         // Acquire status, [ Possible Values : "READY", "REQUESTED", "COMPLETED", "CANCEL_REQUESTED", "CANCELED" ]
 		ReceiptURL            string `json:"receiptUrl"`            // Card sales slip URL
 	} `json:"card"`
@@ -59,7 +60,7 @@ type Payment struct {
 	} `json:"virtualAccount"`
 	Secret      *string `json:"secret"` // Secret which is using for validate virtual account payment callback, NULLABLE
 	MobilePhone *struct {
-		Carrier             string `json:"carrier"`             // Carrier name of mobile purchase device
+		Carrier             string `json:"carrier"`             // Deprecated: Deleted in 2020-06-08
 		CustomerMobilePhone string `json:"customerMobilePhone"` // Mobile phone number which used for mobile purchase
 		SettlementStatus    string `json:"settlementStatus"`    // Settlement status of mobile phone payment, [ Possible Values : "INCOMPLETE", "COMPLETE" ]
 		ReceiptUrl          string `json:"receiptUrl"`          // Mobile phone payment receipt URL

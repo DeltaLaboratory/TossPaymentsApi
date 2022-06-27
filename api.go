@@ -6,6 +6,8 @@ import (
 	"github.com/imroc/req/v3"
 )
 
+// NewClient
+// Create a new TossPaymentsApi client
 func NewClient(apiKey string) *Client {
 	client := &Client{}
 	client.httpClient = req.C().
