@@ -2,7 +2,7 @@ module github.com/DeltaLaboratory/TossPaymentsApi
 
 go 1.18
 
-require github.com/imroc/req/v3 v3.20.0
+require github.com/imroc/req/v3 v3.26.7
 
 require (
 	github.com/cheekybits/genny v1.0.0 // indirect
